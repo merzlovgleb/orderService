@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package orders;
+option java_multiple_files = true;
+option java_package = "com.example.orderservice.proto";
+
+service OrderService {
+  rpc CreateOrder (CreateOrderRequest) returns (OrderResponse);
+  rpc GetOrderById (GetOrderRequest) returns (OrderResponse);
+}
+
+message CreateOrderRequest {
+  string cartId = 1;
+  string clientId = 2;
+  string currency = 3;
+}
+
+message GetOrderRequest {
+  string orderId = 1;
+}
+
+message OrderItem {
+  string productId = 1;
+  int32 quantity = 2;
+  double price = 3;
+  string currency = 4;
+}
+
+message OrderResponse {
+  string orderId = 1;
+  string status = 2;
+  double totalAmount = 3;
+  string currency = 4;
+  repeated OrderItem items = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
+}
