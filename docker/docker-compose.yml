@@ -1,0 +1,7 @@
+﻿include:
+  #  - './grafana/docker-compose.grafana.yml'
+  - 'postgres/docker-compose.postgres.yml'
+  #  - './minio/docker-compose.s3.yml'
+  #  - './kafka/docker-compose.kafka.yml'
+  - 'networks/docker-compose.networks.yml'
+#  - './redis/docker-compose.redis.yaml'

@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  postgres-db-orderService:
+    container_name: postgresDbOrderService
+    image: postgres:16
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: orders
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata-orders:/var/lib/postgresql/data
+    networks:
+      - shared
+
+  liquibase-migrations-prices:
+    container_name: orderService-migrations
+    image: liquibase/liquibase:4.29
+    depends_on:
+      - postgres-db-orderService
+    command:
+      - --searchPath=/changelog
+      - --changelog-file=db.changelog-master.yaml
+      - --driver=org.postgresql.Driver
+      - --url=jdbc:postgresql://postgres-db-orderService:5432/orders
+      - --username=orders
+      - --password=orders
+      - update
+    volumes:
+      - ./orders/changelog:/changelog
+    networks:
+      - shared
+volumes:
+  pgdata-orders:

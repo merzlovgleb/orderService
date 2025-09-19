@@ -1,54 +1,8 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
-      author: dev
+      id: V1_init_orders
+      author: g.merzlov
       changes:
-        - createTable:
-            tableName: carts
-            columns:
-              - column: { name: id, type: uuid, constraints: { primaryKey: true } }
-              - column: { name: client_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: created_at, type: timestamp }
-              - column: { name: updated_at, type: timestamp }
-
-        - createTable:
-            tableName: cart_items
-            columns:
-              - column: { name: id, type: uuid, constraints: { primaryKey: true } }
-              - column: { name: cart_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: product_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: quantity, type: int }
-              - column: { name: price, type: numeric }
-              - column: { name: currency, type: varchar(10) }
-
-        - createTable:
-            tableName: orders
-            columns:
-              - column: { name: id, type: uuid, constraints: { primaryKey: true } }
-              - column: { name: client_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: cart_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: status, type: varchar(50) }
-              - column: { name: total_amount, type: numeric }
-              - column: { name: currency, type: varchar(10) }
-              - column: { name: created_at, type: timestamp }
-              - column: { name: updated_at, type: timestamp }
-
-        - createTable:
-            tableName: order_items
-            columns:
-              - column: { name: id, type: uuid, constraints: { primaryKey: true } }
-              - column: { name: order_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: product_id, type: uuid }
-              - column: { name: quantity, type: int }
-              - column: { name: price, type: numeric }
-              - column: { name: currency, type: varchar(10) }
-
-        - createTable:
-            tableName: order_status_history
-            columns:
-              - column: { name: id, type: uuid, constraints: { primaryKey: true } }
-              - column: { name: order_id, type: uuid, constraints: { nullable: false } }
-              - column: { name: old_status, type: varchar(50) }
-              - column: { name: new_status, type: varchar(50) }
-              - column: { name: source, type: varchar(50) }
-              - column: { name: changed_at, type: timestamp }
+        - sqlFile:
+            path: sql/init_order_service.sql
+            relativeToChangelogFile: true

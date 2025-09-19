@@ -351,13 +351,7 @@
                                             <outputSchemaToDefault>true</outputSchemaToDefault>
                                             <schemata>
                                                 <schema>
-                                                    <inputSchema>goods</inputSchema>
-                                                </schema>
-                                                <schema>
-                                                    <inputSchema>categories</inputSchema>
-                                                </schema>
-                                                <schema>
-                                                    <inputSchema>goods_to_categories</inputSchema>
+                                                    <inputSchema>order_service</inputSchema>
                                                 </schema>
                                             </schemata>
                                         </database>
