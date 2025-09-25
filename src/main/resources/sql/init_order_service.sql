@@ -1,10 +1,11 @@
 create schema order_service
 
 CREATE TYPE order_status AS enum (
-'CREATED',
-'PAID',
-'SHIPPED',
-'CANCELLED'
+'NEW',
+'IN_PROCESSING',
+'COLLECTED',
+'IN_DELIVERY'
+'CANCEL'
 );
 
 CREATE TABLE "order_service"."carts" (

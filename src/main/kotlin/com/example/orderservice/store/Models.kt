@@ -5,11 +5,11 @@ import java.time.OffsetDateTime
 import java.util.UUID
 
 enum class OrderStatus {
-    CREATED,
-    PROCESSING,
-    SHIPPED,
-    DELIVERED,
-    CANCELLED
+    NEW,
+    IN_PROCESSING,
+    COLLECTED,
+    IN_DELIVERY,
+    CANCEL
 }
 
 data class Cart(
@@ -30,11 +30,11 @@ data class OrderEntity(
     val id: UUID,
     val clientId: UUID,
     val cart: Cart,
-    val status: OrderStatus,
+    var status: OrderStatus,
     val totalAmount: BigDecimal,
     val currency: String,
     val createdAt: OffsetDateTime,
-    val updatedAt: OffsetDateTime
+    var updatedAt: OffsetDateTime
 )
 
 data class OrderItemEntity(
@@ -45,4 +45,14 @@ data class OrderItemEntity(
     val price: BigDecimal,
     val currency: String
 )
+
+data class OrderStatusHistoryEntity(
+val id: UUID,
+val order: OrderEntity,
+val oldStatus: OrderStatus?,
+val newStatus: OrderStatus,
+val source: String?,
+val changedAt: OffsetDateTime
+)
+
 
