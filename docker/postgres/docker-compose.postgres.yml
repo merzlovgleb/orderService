@@ -14,7 +14,7 @@ services:
     networks:
       - shared
 
-  liquibase-migrations-prices:
+  liquibase-migrations-orders:
     container_name: orderService-migrations
     image: liquibase/liquibase:4.29
     depends_on:
